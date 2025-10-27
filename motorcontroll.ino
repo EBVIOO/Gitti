@@ -8,7 +8,7 @@ bool directionState;  // Es wird eine bool-Variable für den directionState dekl
 
 void setup() { // Funktionsbereich START 
 
-Serial.begin(9600);
+Serial.begin(9600); // Yeah, nicht vergessen
     
 //define pins
 pinMode(directionPin, OUTPUT); //  PIN-Konfiguration auf OUTPUT-Modus
@@ -50,3 +50,4 @@ void set_power( int given_power){
  analogWrite(pwmPin,real_power);
 }
                                                                                                                                 
+
