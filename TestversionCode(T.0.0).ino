@@ -13,6 +13,10 @@ float sollwert_Innere = 0;
 void setup() { }
 
 void loop() {
+
+    calibrate()
+    delay(1000)
+
     // Eingänge aktualisieren (Platzhalter):
     sollAbrollwinkel = getSollAbrollwinkel();
     istAbrollwinkel  = getIstAbrollwinkel();
@@ -39,3 +43,22 @@ void Geschwindigkeitsregelung(float x) {
 
 
 }  /*Andri´s Funktion*/
+
+void calibrate() {
+  
+  while(Autohome == HIGH){
+    eslstate = digitalRead(esl);      //Endschalter auslesen während Autohome
+    esrstate = digitalRead(esr);      //
+
+    //Rolle L aufrollen und Rolle R abrollen
+    if(esl=HIGH){
+      //stoppe rollen
+    }
+
+    //Rolle L gezielt abrollen umd Rolle R aufrollen
+    if(esr=HIGH){
+    //stoppe Rollen  
+    }
+    //fahre beide Rollen auf 0/0
+  }
+}
