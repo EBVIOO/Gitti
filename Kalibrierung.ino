@@ -12,7 +12,7 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop() {
+void calibrate() {
   
   while(Autohome == HIGH){
     eslstate = digitalRead(esl);      //Endschalter auslesen während Autohome
@@ -30,3 +30,4 @@ void loop() {
     //fahre beide Rollen auf 0/0
   }
 }
+
