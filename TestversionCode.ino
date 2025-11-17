@@ -22,13 +22,20 @@ void loop() {
 
     integral_outer += fehler;   // nur verwenden, wenn Ki_outer > 0
 
-    sollwert_Innere = Kp_outer * fehler + Ki_outer * integral_outer;
+    sollwert_geschwindigkeit = Kp_outer * fehler + Ki_outer * integral_outer;
 
     // Ausgabe an die innere Regelung:
-    setSollwertInnereRegelung(sollwert_Innere);
+    Geschwindigkeitsregelung(sollwert_geschwindigkeit );
 }
 
 // ---- Platzhalterfunktionen (werden im Gesamtprojekt ersetzt) ----
 float getSollAbrollwinkel() { return 0; }
 float getIstAbrollwinkel()  { return 0; }
-void setSollwertInnereRegelung(float x) { }
+
+
+
+void Geschwindigkeitsregelung(float x) {
+
+
+
+}  /*Andri´s Funktion*/
