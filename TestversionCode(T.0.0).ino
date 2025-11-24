@@ -76,9 +76,8 @@ void calibrate() {
 }//funktion von brennain
 
 
-void _read_encoder(encoder ENC){
-
- encoder1.read();
+void _read_encoder(Encoder ENC){
+  ENC.read();
 
 
 
