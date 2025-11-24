@@ -20,6 +20,7 @@ float sollwert_Innere = 0;
 
 void setup() {
   calibrate()
+  _read_encoder(encoder1)
 }
 void loop() {
 
@@ -85,9 +86,7 @@ void calibrate() {
 
 
 void _read_encoder(Encoder ENC){
-  ENC.read();
+ long value = ENC.read();
+ return value
 
-
-
-  
 }
