@@ -74,3 +74,13 @@ void calibrate() {
     //fahre beide Rollen auf 0/0
   }
 }//funktion von brennain
+
+
+void _read_encoder(encoder ENC){
+
+ encoder1.read();
+
+
+
+  
+}
