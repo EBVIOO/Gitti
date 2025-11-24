@@ -1,4 +1,5 @@
-// ---- Parameter der äußeren Regelung ----
+#include <Encoder.h>
+
 float Kp_outer = 1.0;     // Verstärkung äußere Regelung
 float Ki_outer = 0.0;     // Optional: Integrationsanteil
 float integral_outer = 0; // Integrator
