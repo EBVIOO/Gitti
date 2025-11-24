@@ -1,5 +1,12 @@
 #include <Encoder.h>
 
+Encoder encoder1(18,19);
+Encoder encoder1(18,19);
+
+
+
+
+
 float Kp_outer = 1.0;     // Verstärkung äußere Regelung
 float Ki_outer = 0.0;     // Optional: Integrationsanteil
 float integral_outer = 0; // Integrator
