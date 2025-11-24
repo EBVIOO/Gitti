@@ -1,7 +1,7 @@
 #include <Encoder.h>
 
 Encoder encoder1(18,19);
-Encoder encoder1(18,19);
+Encoder encoder2(20,21);
 
 
 
@@ -46,10 +46,11 @@ float getIstAbrollwinkel()  { return 0; }
 
 
 
-void Geschwindigkeitsregelung(float x) {
+float Geschwindigkeitsregelung(float x) {
     float faktor = 0.2 + 0.05 * (abs(soll - ist) / 100.0);
     faktor = constrain(faktor, 0.2, 0.7);
     float speed = faktor * 40;   // das ist deine neue Geschwindigkeit
+    return speed
 
 
 
