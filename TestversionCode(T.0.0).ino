@@ -18,9 +18,13 @@ float istAbrollwinkel  = 0;  // vom Sensor (Encoder, IMU etc.)
 // ---- Ausgang zur inneren Regelung ----
 float sollwert_Innere = 0;
 
+long oldpos1;
+long oldpos2;
+
 void setup() {
   calibrate()
-  _read_encoder(encoder1)
+  oldpos1 = _read_encoder(encoder1)
+  oldpos2 = _read_encoder(encoder2)
 }
 void loop() {
 
@@ -85,7 +89,7 @@ void calibrate() {
 }//funktion von brennain
 
 
-void _read_encoder(Encoder ENC){
+long _read_encoder(Encoder ENC){
  long value = ENC.read();
  return value
 
