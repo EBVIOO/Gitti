@@ -10,12 +10,12 @@ float istAbrollwinkel  = 0;  // vom Sensor (Encoder, IMU etc.)
 // ---- Ausgang zur inneren Regelung ----
 float sollwert_Innere = 0;
 
-void setup() { }
-
+void setup() {
+  calibrate()
+}
 void loop() {
 
-    calibrate()
-    delay(1000)
+
 
     // Eingänge aktualisieren (Platzhalter):
     sollAbrollwinkel = getSollAbrollwinkel();
@@ -39,6 +39,9 @@ float getIstAbrollwinkel()  { return 0; }
 
 
 void Geschwindigkeitsregelung(float x) {
+    float faktor = 0.2 + 0.05 * (abs(soll - ist) / 100.0);
+    faktor = constrain(faktor, 0.2, 0.7);
+    float speed = faktor * 40;   // das ist deine neue Geschwindigkeit
 
 
 
