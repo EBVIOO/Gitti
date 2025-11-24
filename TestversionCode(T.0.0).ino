@@ -28,26 +28,33 @@ void setup() {
 }
 void loop() {
 
+long current_position1 = _read_encoder(encoder1)
+long current_position2 = _read_encoder(encoder2)
 
 
-    // Eingänge aktualisieren (Platzhalter):
-    sollAbrollwinkel = getSollAbrollwinkel();
-    istAbrollwinkel  = getIstAbrollwinkel();
 
-    // --- äußere Regelung ---
-    float fehler = sollAbrollwinkel - istAbrollwinkel;
-
-    integral_outer += fehler;   // nur verwenden, wenn Ki_outer > 0
-
-    sollwert_geschwindigkeit = Kp_outer * fehler + Ki_outer * integral_outer;
-
-    // Ausgabe an die innere Regelung:
-    Geschwindigkeitsregelung(sollwert_geschwindigkeit );
 }
 
-// ---- Platzhalterfunktionen (werden im Gesamtprojekt ersetzt) ----
+
+
+void Abrollwinkelregelung(current_pos){
+
+    sollAbrollwinkel = getSollAbrollwinkel();
+    istAbrollwinkel  = current_pos;
+
+    // einfachste äußere Regelung: Fehler = Soll - Ist
+    sollwert_Innere = sollAbrollwinkel - istAbrollwinkel;
+
+    // an innere Regelung weitergeben
+    setSollwertInnereRegelung(sollwert_Innere);
+
+
+// Platzhalter – werden im Gesamtprojekt ersetzt
 float getSollAbrollwinkel() { return 0; }
 float getIstAbrollwinkel()  { return 0; }
+void setSollwertInnereRegelung(float x) { }
+}
+
 
 
 
