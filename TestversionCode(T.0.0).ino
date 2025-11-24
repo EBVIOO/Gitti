@@ -47,11 +47,18 @@ float getIstAbrollwinkel()  { return 0; }
 
 
 float Geschwindigkeitsregelung(float x) {
-    float faktor = 0.2 + 0.05 * (abs(soll - ist) / 100.0);
-    faktor = constrain(faktor, 0.2, 0.7);
-    float speed = faktor * 40;   // das ist deine neue Geschwindigkeit
-    return speed
+float diff = soll - ist;
 
+float faktor = 0.2 + 0.05 * (abs(diff) / 100.0);
+faktor = constrain(faktor, 0.2, 0.7);
+
+float speedValue = faktor * 40;
+
+if (diff == 0) {
+    speed = 0;
+} else {
+    speed = (diff > 0) ? speedValue : -speedValue;
+}
 
 
 }  /*Andri´s Funktion*/
