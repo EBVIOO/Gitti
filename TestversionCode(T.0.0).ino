@@ -47,6 +47,7 @@ float getIstAbrollwinkel()  { return 0; }
 
 
 float Geschwindigkeitsregelung(float x) {
+  
 float diff = soll - ist;
 
 float faktor = 0.2 + 0.05 * (abs(diff) / 100.0);
