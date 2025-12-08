@@ -30,7 +30,7 @@ void loop() {
 String Julian() {
   String A = "A";
   return A;
-
+}
 
 String setSollwertInnereRegelung(String A_B,String C) {
   String ABC =(A_B + C);
