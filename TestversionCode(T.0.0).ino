@@ -17,8 +17,9 @@ void setup() {
 
 void loop() {
   String Sebastian = "B";                    
-  String SebastianErgebnis = Julian() + Sebastian;
-
+  String AB = Julian() + Sebastian;
+  String AbdulOne= "C"
+  String ABC = setSollwertInnereRegelung()
   Serial.println(SebastianErgebnis);         
   delay(1000);                               
 }
