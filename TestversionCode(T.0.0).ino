@@ -21,6 +21,8 @@ void loop() {
   String AbdulOne= "C";
   String ABC = setSollwertInnereRegelung(AB,AbdulOne);
   String AbdulTwo ="D";
+
+  
   Serial.println(SebastianErgebnis);         
   delay(1000);                               
 }
@@ -31,8 +33,9 @@ String Julian() {
 
 
 String setSollwertInnereRegelung(String A_B,String C) {
-  String ABC =(A_B - C);
+  String ABC =(A_B + C);
   return ABC
 }
 
+String Andri()
 
