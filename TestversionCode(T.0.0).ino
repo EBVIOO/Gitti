@@ -16,14 +16,16 @@ void setup() {
 }
 
 void loop() {
+  
   String Sebastian = "B";                    
   String AB = Julian() + Sebastian;
   String AbdulOne= "C";
   String ABC = setSollwertInnereRegelung(AB,AbdulOne);
   String AbdulTwo ="D";
+  String Ergebnis = Andri(ABC,AbdulTwo)
 
   
-  Serial.println(SebastianErgebnis);         
+  Serial.println(Ergebnis);         
   delay(1000);                               
 }
 
@@ -37,5 +39,10 @@ String setSollwertInnereRegelung(String A_B,String C) {
   return ABC
 }
 
-String Andri()
+String Andri(String ABC,String D) {
+
+  String E = "E";
+  String ABCDE = ABC + D + E;
+  return ABCDE
+    }
 
