@@ -1,7 +1,7 @@
 #include <Encoder.h>
 
-String empfangen = "a";   
-String erweitert = empfangen + "b";  
+String1 = "a";   
+String2 = empfangen + "b";  
 
 void setup() {
   Serial.begin(9600);
