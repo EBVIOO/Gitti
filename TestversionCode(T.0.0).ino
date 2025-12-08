@@ -1,15 +1,5 @@
 
 
-void setup() {
-}
-void loop(){
-Julian()
-}
-
-String Julian() {
-  String A = "A";
-  return A;
-}
 
 void setup() {
   Serial.begin(9600); // Serial Monitor starten
