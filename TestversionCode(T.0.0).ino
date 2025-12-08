@@ -11,6 +11,16 @@ String Julian() {
   return A;
 }
 
-String Sebastian (String A) {
+void setup() {
+  Serial.begin(9600); // Serial Monitor starten
 }
+
+void loop() {
+  String Sebastian = "B";                    
+  String SebastianErgebnis = Julian() + Sebastian;
+  Serial.println(SebastianErgebnis);         
+  delay(1000);                               
+}
+
+
 
