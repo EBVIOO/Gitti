@@ -1,3 +1,4 @@
+String A = "A";
 
 void setup() {
 }
