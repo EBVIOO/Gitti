@@ -18,8 +18,9 @@ void setup() {
 void loop() {
   String Sebastian = "B";                    
   String AB = Julian() + Sebastian;
-  String AbdulOne= "C"
-  String ABC = setSollwertInnereRegelung()
+  String AbdulOne= "C";
+  String ABC = setSollwertInnereRegelung(AB,AbdulOne);
+  String AbdulTwo ="D";
   Serial.println(SebastianErgebnis);         
   delay(1000);                               
 }
