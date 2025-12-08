@@ -12,7 +12,7 @@ void loop() {
   String AbdulOne= "C";
   String ABC = RegelungAussenJosia(AB,AbdulOne);
   String AbdulTwo ="D";
-  String Ergebnis = Andri(ABC,AbdulTwo)
+  String Ergebnis = Andri(ABC,AbdulTwo);
 
   
   Serial.println(Ergebnis);         
