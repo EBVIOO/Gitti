@@ -10,7 +10,7 @@ void loop() {
   String Sebastian = "B";                    
   String AB = Julian() + Sebastian;
   String AbdulOne= "C";
-  String ABC = setSollwertInnereRegelung(AB,AbdulOne);
+  String ABC = RegelungAussenJosia(AB,AbdulOne);
   String AbdulTwo ="D";
   String Ergebnis = Andri(ABC,AbdulTwo)
 
@@ -24,12 +24,12 @@ String Julian() {
   return A;
 }
 
-String setSollwertInnereRegelung(String A_B,String C) {
+String RegelungAussenJosia(String A_B,String C) {
   String ABC =(A_B + C);
   return ABC
 }
 
-String Andri(String ABC,String D) {
+String RegelungInnenAndri(String ABC,String D) {
 
   String E = "E";
   String ABCDE = ABC + D + E;
