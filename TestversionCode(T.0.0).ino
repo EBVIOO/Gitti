@@ -38,3 +38,12 @@ String RegelungInnenAndri(String ABC,String D) {
   return ABCDE
     }
 
+
+
+String RegelungInnenAndri(String ABC,String D) {
+
+  String U = "U";
+  String uS1 = sS1 - sI1;
+  String uS2 = sS2 - sI2;
+  return uS1, uS2
+    }
