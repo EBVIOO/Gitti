@@ -87,5 +87,5 @@ speed = correctedSpeed;
   String U = "U";
   String uS1 = sS1 - sI1;
   String uS2 = sS2 - sI2;
-  return ABCDE
+  return uS1, uS2
     }
