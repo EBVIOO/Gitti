@@ -21,23 +21,18 @@ void loop() {
   delay(1000);                               
 }
 
-String Julian() {
-  String A = "A";
-  return A;
+
+void setSollwertInnereRegelung(String as1,String as2,String aI1,String aI2) {
+  String sS1 = as1 + aI1
+  String sS2 = as2 + aI2
+  return sS1,sS2
+  
+ 
 }
-
-String RegelungAussenJosia(as2) {
-  String ABC =(A_B + C);
-  return ABC
-}
-
-
-
 
 
 String RegelungInnenAndri(String ss1,String ss2,String sI1,String sI2) {
-
-  String U = "U";
+  
   String uS1 = sS1 - sI1;
   String uS2 = sS2 - sI2;
   return uS1, uS2
