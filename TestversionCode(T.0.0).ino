@@ -31,9 +31,11 @@ void setSollwertInnereRegelung(String as1,String as2,String aI1,String aI2) {
 }
 
 
-String RegelungInnenAndri(String ss1,String ss2,String sI1,String sI2) {
-  
-  String uS1 = sS1 - sI1;
-  String uS2 = sS2 - sI2;
-  return uS1, uS2
-    }
+Spannung RegelungInnenAndri(float sS1, float sI1,
+                            float sS2, float sI2) {
+    float Kp = const;
+    float uS1 = Kp * (sS1 - sI1);
+    float uS2 = Kp * (sS2 - sI2);
+
+    return new Spannung(uS1, uS2);
+}
