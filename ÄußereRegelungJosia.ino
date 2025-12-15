@@ -17,13 +17,14 @@ void loop() {
   setSollwertInnereRegelung(Ergebnis);
 }
 
-void setSollwertInnereRegelung(float as1,float as2,float aI1,float aI2) {
+void setSollwertAussereRegelung(float as1,float as2,float aI1,float aI2) {
   float sS1 = as1 -aI1
   float sS2 = as2 - aI2
   return sS1,sS2
   
  
 }
+
 
 
 
