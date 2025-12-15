@@ -82,7 +82,7 @@ if (correctedSpeed > 0) {
 
 speed = correctedSpeed;   
 
-4) String RegelungInnenAndri(String ABC,String D) {
+4)String RegelungInnenAndri(String ABC,String D) {
 
   String U = "U";
   String uS1 = sS1 - sI1;
