@@ -1,9 +1,11 @@
-String A = "A";
+String x = "x";
+String Y = "Y";
 
 void setup() {
   Serial.begin(9600);
 
-  Serial.println(A);
+  Serial.println(X);
+  Serial.println(Y);
 }
 
 void loop() {
