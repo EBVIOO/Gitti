@@ -26,7 +26,7 @@ String Julian() {
   return A;
 }
 
-String RegelungAussenJosia(String A_B,String C) {
+String RegelungAussenJosia(as2) {
   String ABC =(A_B + C);
   return ABC
 }
@@ -35,7 +35,7 @@ String RegelungAussenJosia(String A_B,String C) {
 
 
 
-String RegelungInnenAndri(String ABC,String D) {
+String RegelungInnenAndri(String ss1,String ss2,String sI1,String sI2) {
 
   String U = "U";
   String uS1 = sS1 - sI1;
