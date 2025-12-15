@@ -31,12 +31,7 @@ String RegelungAussenJosia(String A_B,String C) {
   return ABC
 }
 
-String RegelungInnenAndri(String ABC,String D) {
 
-  String E = "E";
-  String ABCDE = ABC + D + E;
-  return ABCDE
-    }
 
 
 
