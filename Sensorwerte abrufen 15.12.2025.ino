@@ -1,51 +1,38 @@
-// Parameter
-const float COUNTS_PER_REV = 4096.0;  // Encoder-Auflösung
-const float Zeit = 0.001;             // Abtastzeit [s]
+#include <Encoder.h>
 
-//Encoder-Zähler
-volatile long encoder1Counts = 0;
-volatile long encoder2Counts = 0;
+Encoder myEnc1(5, 6);
+Encoder myEnc2(7, 8);
 
-float aI1, aI2;   // Abrollwinkel
-float sI1, sI2;   // Geschwindigkeit
+const float Zeit = 0.001; // Abtastzeit [s]
 
-// interne Speicher 
-static float aI1_alt = 0.0;
-static float aI2_alt = 0.0;
+long pos1_alt = 0;
+long pos2_alt = 0;
 
-// Sensorwerte abrufen
-void readSensorwerte() {
-
-  aI1 = (encoder1Counts / COUNTS_PER_REV) * 2.0 * PI;
-  aI2 = (encoder2Counts / COUNTS_PER_REV) * 2.0 * PI;
-
-
-  sI1 = (aI1 - aI1_alt) / Zeit;
-  sI2 = (aI2 - aI2_alt) / Zeit;
-
-
-  aI1_alt = aI1;
-  aI2_alt = aI2;
-}
-
+long pos1, pos2;
+float sI1, sI2;
 
 void setup() {
-  Serial.begin(9600);  
-
-  pinMode(2, INPUT_PULLUP);
-  pinMode(3, INPUT_PULLUP);
-
+  Serial.begin(9600);
 }
 
-
 void loop() {
-  readSensorwerte(); // Sensorwerte abrufen
+  // Positionswerte auslesen
+  pos1 = myEnc1.read();
+  pos2 = myEnc2.read();
 
-  // Serial Monitor Ausgabe
-  Serial.print("aI1: "); Serial.print(aI1);
-  Serial.print("  sI1: "); Serial.print(sI1);
-  Serial.print(" | aI2: "); Serial.print(aI2);
-  Serial.print("  sI2: "); Serial.println(sI2);
+  // Geschwindigkeit = Differenz der Counts / Zeit
+  sI1 = (pos1 - pos1_alt) / Zeit;
+  sI2 = (pos2 - pos2_alt) / Zeit;
 
-  delay(100); 
+  // Alte Position speichern
+  pos1_alt = pos1;
+  pos2_alt = pos2;
+
+  // Ausgabe
+  Serial.print("Encoder1 Counts: "); Serial.print(pos1);
+  Serial.print("  Speed1: "); Serial.print(sI1);
+  Serial.print(" | Encoder2 Counts: "); Serial.print(pos2);
+  Serial.print("  Speed2: "); Serial.println(sI2);
+
+  delay(200);
 }
