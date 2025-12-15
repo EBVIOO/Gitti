@@ -44,7 +44,7 @@ void setSollwertAussereRegelung(float as1,float as2,float aI1,float aI2) {
 
 public class Regler {
     public Spannung RegelungInnenAndri(float sS1, float sI1,
-                                       float sS2, float sI2) {
+                                       float sS2, float sI2, float Kp) {
         float Kp = 1.0f;
         float uS1 = Kp * (sS1 - sI1);
         float uS2 = Kp * (sS2 - sI2);
