@@ -82,10 +82,12 @@ if (correctedSpeed > 0) {
 
 speed = correctedSpeed;   
 
-String RegelungInnenAndri(String ABC,String D) {
+4) Spannung RegelungInnenAndri(float sS1, float sI1,
+                            float sS2, float sI2) {
+    float Kp = const;
+    float uS1 = Kp * (sS1 - sI1);
+    float uS2 = Kp * (sS2 - sI2);
 
-  String U = "U";
-  String uS1 = sS1 - sI1;
-  String uS2 = sS2 - sI2;
-  return uS1, uS2
-    }
+    return new Spannung(uS1, uS2);
+}
+
