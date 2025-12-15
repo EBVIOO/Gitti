@@ -22,13 +22,15 @@ void loop() {
 }
 
 
-void setSollwertInnereRegelung(String as1,String as2,String aI1,String aI2) {
-  String sS1 = as1 + aI1
-  String sS2 = as2 + aI2
+
+void setSollwertAussereRegelung(float as1,float as2,float aI1,float aI2) {
+  float sS1 = as1 -aI1
+  float sS2 = as2 - aI2
   return sS1,sS2
-  
+
  
 }
+
 
 
 Spannung RegelungInnenAndri(float sS1, float sI1,
