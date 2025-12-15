@@ -17,7 +17,7 @@ void loop() {
   setSollwertInnereRegelung(Ergebnis);
 }
 
-void setSollwertInnereRegelung(int ABC) {
-  // ABC = Ergebnis von (AB - C)
-  // wird später ersetzt
+void setSollwertInnereRegelung(stri) {
+ 
 }
+
