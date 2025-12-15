@@ -17,10 +17,11 @@ void loop() {
   setSollwertInnereRegelung(Ergebnis);
 }
 
-void setSollwertInnereRegelung(string as1,sting as2) {
+void setSollwertInnereRegelung(String as1,String as2,String aI1,S) {
 
   string
  
 }
+
 
 
