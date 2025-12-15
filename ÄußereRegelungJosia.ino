@@ -17,7 +17,10 @@ void loop() {
   setSollwertInnereRegelung(Ergebnis);
 }
 
-void setSollwertInnereRegelung(stri) {
+void setSollwertInnereRegelung(string as1,sting as2) {
+
+  string
  
 }
+
 
