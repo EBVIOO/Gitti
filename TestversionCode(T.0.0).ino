@@ -9,16 +9,7 @@ void setup() {
 
 void loop() {
   
-  String Sebastian = "B";                    
-  String AB = Julian() + Sebastian;
-  String AbdulOne= "C";
-  String ABC = RegelungAussenJosia(AB,AbdulOne);
-  String AbdulTwo ="D";
-  String Ergebnis = Andri(ABC,AbdulTwo);
-
-  
-  Serial.println(Ergebnis);         
-  delay(1000);                               
+                 
 }
 
 
