@@ -3,7 +3,8 @@ float aS1 = 0;   // Soll-Abrollwinkel Motor 1
 float aS2 = 0;   // Soll-Abrollwinkel Motor 2
 float aI1 = 0;   // Ist-Abrollwinkel Motor 1
 float aI2 = 0;   // Ist-Abrollwinkel Motor 2
-
+float sI1 = 0;
+float sI2 = 0;
 // Ausgang
 float sS1 = 0;   // Soll-Geschwindigkeit Motor 1
 float sS2 = 0;   // Soll-Geschwindigkeit Motor 2
@@ -26,5 +27,22 @@ void loop() {
   sS1 = (aS1 - aI1) * k;
   sS2 = (aS2 - aI2) * k;
 }
+// innere Regelung 
 
+void InnereRegelung(float sS1, float sI1,
+                    float sS2, float sI2,
+                    ReglerState* state)
+{
+    float Kp = 0.5f;  
+   
+    state->u1 += Kp * (sS1 - sI1);
+    state->u2 += Kp * (sS2 - sI2);
+
+    
+    if (state->u1 > 255) state->u1 = 255;
+    if (state->u1 < 0)   state->u1 = 0;
+
+    if (state->u2 > 255) state->u2 = 255;
+    if (state->u2 < 0)   state->u2 = 0;
+}
 
