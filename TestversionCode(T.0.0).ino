@@ -42,11 +42,21 @@ void setSollwertAussereRegelung(float as1,float as2,float aI1,float aI2) {
 
 
 
- Spannung RegelungInnenAndri(float sS1, float sI1,
-                                       float sS2, float sI2,) {
-        float Kp = 1.0f;
-        float uS1 = Kp * (sS1 - sI1);
-        float uS2 = Kp * (sS2 - sI2);
+Spannung RegelungInnenAndrii(float sS1, float sI1,
+                            float sS2, float sI2,
+                            ReglerState* state)
+{
+    float Kp = const;
 
-        return new  U(uS1, uS2);
-    }
+    state->u1 += Kp * (sS1 - sI1);
+    state->u2 += Kp * (sS2 - sI2);
+
+    // saturation
+    if (state->u1 > 255) state->u1 = 255;
+    if (state->u1 < 0)   state->u1 = 0;
+
+    if (state->u2 > 255) state->u2 = 255;
+    if (state->u2 < 0)   state->u2 = 0;
+
+    return (state->u1, state->u2);
+}
