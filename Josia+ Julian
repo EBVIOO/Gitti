@@ -1,0 +1,73 @@
+const byte buttonPins[4] = {2, 4, 3, 5};   
+const int  delta[4]      = {1, -1, 1, -1};
+const byte axis[4]       = {0, 0, 1, 1};   
+ 
+int value[2] = {0, 0};   // value[0] = X, value[1] = Y
+ 
+int buttonState[4]   = {HIGH, HIGH, HIGH, HIGH};
+int lastReading[4]   = {HIGH, HIGH, HIGH, HIGH};
+unsigned long lastDebounce[4] = {0, 0, 0, 0};
+ 
+const unsigned long debounceDelay = 50;
+// Eingänge
+float aS1 = 0;   // Soll-Abrollwinkel Motor 1
+float aS2 = 0;   // Soll-Abrollwinkel Motor 2
+float aI1 = 0;   // Ist-Abrollwinkel Motor 1
+float aI2 = 0;   // Ist-Abrollwinkel Motor 2
+
+// Ausgang
+float sS1 = 0;   // Soll-Geschwindigkeit Motor 1
+float sS2 = 0;   // Soll-Geschwindigkeit Motor 2
+
+// Umrechnungsfaktor Winkel -> Geschwindigkeit
+float k = 1.0;
+void setup() {
+  Serial.begin(9600);
+  for (byte i = 0; i < 4; i++) {
+    pinMode(buttonPins[i], INPUT_PULLUP);
+  }
+}
+ 
+void loop() {
+  bool printLine = false;
+ 
+  for (byte i = 0; i < 4; i++) {
+    int reading = digitalRead(buttonPins[i]);
+ 
+    if (reading != lastReading[i]) {
+      lastDebounce[i] = millis();
+    }
+ 
+    if (millis() - lastDebounce[i] > debounceDelay) {
+      if (reading != buttonState[i]) {
+        buttonState[i] = reading;
+ 
+        if (reading == LOW) {
+          value[axis[i]] += delta[i];
+          printLine = true;
+        }
+      }
+    }
+ 
+    lastReading[i] = reading;
+  }
+
+  // Beispielwerte (werden später ersetzt)
+  aS1 = 30;
+  aI1 = 25;
+
+  aS2 = 40;
+  aI2 = 35;
+
+  // äußere Regelung: nur Differenz * Faktor
+  sS1 = (aS1 - aI1) * k;
+  sS2 = (aS2 - aI2) * k; 
+  
+
+
+ if (printLine){
+    Serial.print("X: "); } 
+    Serial.print(value[0]);
+    Serial.print("   Y: ");
+    Serial.println(value[1]);
+  }
