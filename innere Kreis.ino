@@ -88,6 +88,6 @@ speed = correctedSpeed;
     float uS1 = Kp * (sS1 - sI1);
     float uS2 = Kp * (sS2 - sI2);
 
-    return new Spannung(uS1, uS2);
+    return(uS1, uS2);
 }
 
