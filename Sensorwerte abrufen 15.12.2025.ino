@@ -22,7 +22,6 @@ void setup() {
 
 void loop() {
   
-  Zeit = millis()
   
   // Positionswerte auslesen
   pos1 = myEnc1.read();
@@ -60,5 +59,6 @@ void loop() {
 
   delay(200);
 }
+
 
 
