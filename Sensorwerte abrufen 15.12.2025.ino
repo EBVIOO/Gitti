@@ -34,7 +34,7 @@ void loop() {
   if (pos1_alt !=  pos1){
     t1 = t2;
     t2 = millis();
-    Zeit = t2 -t1;
+    Zeit = t2-t1;
 
   }
 
@@ -60,4 +60,5 @@ void loop() {
 
   delay(200);
 }
+
 
