@@ -16,7 +16,10 @@ void setup() {
 }
 
 void loop() {
-  // Positionswerte auslesen
+ read_position()
+}
+
+void read_position() {
   pos1 = myEnc1.read();
   pos2 = myEnc2.read();
 
