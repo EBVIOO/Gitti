@@ -104,8 +104,8 @@ void InnereRegelung(float sS1, float sI1,
 
     
     if (state->u1 > 255) state->u1 = 255;
-    if (state->u1 < 0)   state->u1 = 0;
+    if (state->u1 < -255)   state->u1 = -255;
 
     if (state->u2 > 255) state->u2 = 255;
-    if (state->u2 < 0)   state->u2 = 0;
+    if (state->u2 < -255)   state->u2 = -255;
 }
