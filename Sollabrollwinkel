@@ -1,0 +1,66 @@
+/*
+  Skycam-Seilberechnung
+  - X und Y kommen in MILLIMETER rein
+  - Ausgabe auch in mm und Radiant
+*/
+
+// ===== Systemparameter in MILLIMETER =====
+float FeldBreite  = 990.0;     // mm
+float FeldHoehe   = 1520.0;    // mm
+float R           = 58.0;      // Trommelradius in mm
+
+// ===== Variablen =====
+float X = 0;
+float Y = 0;
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Berechnung gestartet – warte auf Eingabe X;Y (in mm)");
+}
+
+void loop() {
+
+  if (Serial.available()) {
+
+    String input = Serial.readStringUntil('\n');
+    int trenner = input.indexOf(';');
+
+    if (trenner > 0) {
+      X = input.substring(0, trenner).toFloat();       // X in mm
+      Y = input.substring(trenner + 1).toFloat();      // Y in mm
+
+      float L1, L2, theta1, theta2;
+      berechneSeile(X, Y, L1, L2, theta1, theta2);
+
+      Serial.print("L1=");
+      Serial.print(L1);
+      Serial.print("mm   L2=");
+      Serial.print(L2);
+      Serial.print("mm   theta1=");
+      Serial.print(theta1);
+      Serial.print("rad   theta2=");
+      Serial.println(theta2);
+    }
+  }
+}
+
+
+// ===== Funktion zur Seilberechnung =====
+void berechneSeile(float X, float Y,
+                   float &L1, float &L2,
+                   float &theta1, float &theta2) {
+
+  float motor1_x = 0.0;
+  float motor1_y = FeldHoehe;
+
+  float motor2_x = FeldBreite;
+  float motor2_y = FeldHoehe;
+
+  // Seillängen in mm
+  L1 = sqrt(pow(X - motor1_x, 2) + pow(Y - motor1_y, 2));
+  L2 = sqrt(pow(X - motor2_x, 2) + pow(Y - motor2_y, 2));
+
+  // Abrollwinkel in Radiant
+  theta1 = L1 / R;
+  theta2 = L2 / R;
+}
