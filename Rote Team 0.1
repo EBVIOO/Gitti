@@ -5,43 +5,35 @@ const byte axis[4]       = {0, 0, 1, 1};
 
 int value[2] = {0, 0};   // value[0] = X, value[1] = Y
 
-int buttonState[4]   = {HIGH, HIGH, HIGH, HIGH};
-int lastReading[4]   = {HIGH, HIGH, HIGH, HIGH};
-unsigned long lastDebounce[4] = {0, 0, 0, 0};
+int buttonState[4];      
+unsigned long lastDebounce[4]; 
 const unsigned long debounceDelay = 50;
 
-// Eingänge (Beispielwerte)
-float aS1 = 0;
-float aS2 = 0;
-float aI1 = 0;
-float aI2 = 0;
+// ===== Sensorwerte (Beispiel) =====
+float aS1 = 0, aS2 = 0;
+float aI1 = 0, aI2 = 0;
+float sS1 = 0, sS2 = 0;
 
-// Ausgang
-float sS1 = 0;
-float sS2 = 0;
-
-// Endschalter
+// ===== Endschalter =====
 const int esl = 52;
 const int esr = 53;
-int eslstate = 0;
-int esrstate = 0;
-bool Autohome = HIGH;
+bool Autohome = true;
 
-// ===== Seilberechnung =====
-float FeldBreite  = 990.0;     // mm
-float FeldHoehe   = 1520.0;    // mm
-float R           = 58.0;      // Trommelradius in mm
+// ===== Seilparameter =====
+const float FeldBreite  = 990.0;     
+const float FeldHoehe   = 1520.0;    
+const float R           = 58.0;      // Trommelradius
 
-float L1 = 0;
-float L2 = 0;
-float theta1 = 0;
-float theta2 = 0;
+float L1 = 0, L2 = 0;
+float theta1 = 0, theta2 = 0;
 
 void setup() {
   Serial.begin(115200);
 
   for (byte i = 0; i < 4; i++) {
     pinMode(buttonPins[i], INPUT_PULLUP);
+    buttonState[i] = digitalRead(buttonPins[i]);
+    lastDebounce[i] = 0;
   }
 
   pinMode(esl, INPUT_PULLUP);
@@ -53,75 +45,63 @@ void setup() {
 void loop() {
   bool printLine = false;
 
-  // ===== Taster einlesen =====
+  // ===== Taster einlesen & entprellen =====
   for (byte i = 0; i < 4; i++) {
     int reading = digitalRead(buttonPins[i]);
-
-    if (reading != lastReading[i]) {
-      lastDebounce[i] = millis();
-    }
-
-    if (millis() - lastDebounce[i] > debounceDelay) {
-      if (reading != buttonState[i]) {
+    if (reading != buttonState[i]) {
+      if (millis() - lastDebounce[i] > debounceDelay) {
         buttonState[i] = reading;
-
         if (reading == LOW) {
           value[axis[i]] += delta[i];  // X/Y ändern
           printLine = true;
         }
       }
+      lastDebounce[i] = millis();
     }
-
-    lastReading[i] = reading;
   }
 
-  // Beispielwerte für Sensoren
+  // ===== Beispiel-Sensorwerte =====
   aS1 = 30; aI1 = 25;
   aS2 = 40; aI2 = 35;
-  sS1 = (aS1 - aI1);
-  sS2 = (aS2 - aI2);
+  sS1 = aS1 - aI1;
+  sS2 = aS2 - aI2;
 
-  // ===== Berechne Seillängen & Winkel =====
+  // ===== Seillängen & Winkel berechnen =====
   berechneSeile(value[0], value[1], L1, L2, theta1, theta2);
 
   // ===== Ausgabe =====
   if (printLine) {
     Serial.print("X: "); Serial.print(value[0]);
     Serial.print("   Y: "); Serial.print(value[1]);
-    Serial.print("   L1="); Serial.print(L1);
-    Serial.print("mm   L2="); Serial.print(L2);
-    Serial.print("mm   theta1="); Serial.print(theta1);
-    Serial.print("rad   theta2="); Serial.println(theta2);
+    Serial.print("   L1="); Serial.print(L1); Serial.print(" mm");
+    Serial.print("   L2="); Serial.print(L2); Serial.print(" mm");
+    Serial.print("   theta1="); Serial.print(theta1); Serial.print(" rad");
+    Serial.print("   theta2="); Serial.println(theta2);  
   }
 
+  // ===== Endschalter prüfen =====
   calibrate();
 }
 
 // ===== Kalibrierung =====
 void calibrate() {
-  if (Autohome == HIGH) {
-    eslstate = digitalRead(esl);
-    esrstate = digitalRead(esr);
+  if (!Autohome) return;
 
-    if (eslstate == LOW) {
-      // Stoppe Rolle links
-    }
-    if (esrstate == LOW) {
-      // Stoppe Rolle rechts
-    }
+  if (digitalRead(esl) == LOW) {
+    // Stoppe Rolle links
+  }
+  if (digitalRead(esr) == LOW) {
+    // Stoppe Rolle rechts
   }
 }
 
-// ===== Funktion zur Seilberechnung =====
+// ===== Seillängenfunktion =====
 void berechneSeile(float X, float Y,
                    float &L1, float &L2,
                    float &theta1, float &theta2) {
-
-  float motor1_x = 0.0;
-  float motor1_y = FeldHoehe;
-
-  float motor2_x = FeldBreite;
-  float motor2_y = FeldHoehe;
+  // Motorpositionen oben links und rechts
+  const float motor1_x = 0.0, motor1_y = FeldHoehe;
+  const float motor2_x = FeldBreite, motor2_y = FeldHoehe;
 
   L1 = sqrt(pow(X - motor1_x, 2) + pow(Y - motor1_y, 2));
   L2 = sqrt(pow(X - motor2_x, 2) + pow(Y - motor2_y, 2));
