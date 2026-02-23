@@ -41,7 +41,7 @@ void loop() {
 
   // WinkelGeschwindigkeit = Differenz der Counts / Zeit
 
-  if (Zeit > 0.0){
+  if (Zeit > 0){
     sI1 = (aI1) / Zeit;
     sI2 = (aI2) / Zeit;
   }
@@ -61,6 +61,7 @@ void loop() {
 
 
 }
+
 
 
 
