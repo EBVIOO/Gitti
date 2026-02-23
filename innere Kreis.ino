@@ -108,4 +108,43 @@ void InnereRegelung(float sS1, float sI1,
 
     if (state->u2 > 255) state->u2 = 255;
     if (state->u2 < -255)   state->u2 = -255;
+}  
+
+6) typedef struct {
+    float u1;
+    float u2;
+} ReglerState;
+
+
+ReglerState state = {0, 0};
+
+
+void InnereRegelung(float sS1, float sI1,
+                    float sS2, float sI2,
+                    ReglerState* state)
+{
+    float Kp = 0.5;
+    
+    state->u1 += Kp * (sS1 - sI1);
+    state->u2 += Kp * (sS2 - sI2);
+
+    if (state->u1 > 255) state->u1 = 255;
+    if (state->u1 < -255) state->u1 = -255;
+
+    if (state->u2 > 255) state->u2 = 255;
+    if (state->u2 < -255) state->u2 = -255;
+}
+
+
+float sS1, sI1, sS2, sI2;
+
+void setup() {
+    
+}
+
+void loop() {
+ 
+
+    InnereRegelung(sS1, sI1, sS2, sI2, &state);
+
 }
