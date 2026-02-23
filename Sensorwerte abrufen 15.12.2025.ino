@@ -30,7 +30,7 @@ void loop() {
   aI1 = (pos1 - pos1_alt)/2;
   aI2 = (pos2 - pos2_alt)/2;
 
-  if (pos1_alt !=  pos1){
+  if (pos1_alt !=  pos1 || pos2_alt != pos2){
     t1 = t2;
     t2 = millis();
     Zeit = t2-t1;
@@ -59,8 +59,9 @@ void loop() {
   Serial.print(" | Encoder2 Counts: "); Serial.print(pos2);
   Serial.print("  Speed2: "); Serial.println(sI2);
 
-  delay(200);
+
 }
+
 
 
 
