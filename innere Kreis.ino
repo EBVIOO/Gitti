@@ -148,3 +148,48 @@ void loop() {
     InnereRegelung(sS1, sI1, sS2, sI2, &state);
 
 }
+
+ typedef struct {
+    float u1;
+    float u2;
+} ReglerState;
+
+ReglerState state = {0, 0};
+
+// Функция регулятора
+void InnereRegelung(float sS1, float sI1,
+                    float sS2, float sI2,
+                    ReglerState* state)
+{
+    float Kp = 0.5;
+
+    state->u1 += Kp * (sS1 - sI1);
+    state->u2 += Kp * (sS2 - sI2);
+
+    if (state->u1 > 255) state->u1 = 255;
+    if (state->u1 < -255) state->u1 = -255;
+
+    if (state->u2 > 255) state->u2 = 255;
+    if (state->u2 < -255) state->u2 = -255;
+}
+
+// Переменные для теста
+float sS1 = 100;  // желаемое значение 1
+float sI1 = 100;   // измеренное значение 1
+float sS2 = 120;  // желаемое значение 2
+float sI2 = 170;  // измеренное значение 2
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    // Вызываем регулятор
+    InnereRegelung(sS1, sI1, sS2, sI2, &state);
+
+    // Печатаем результат
+    Serial.print("u1 = "); Serial.print(state.u1);
+    Serial.print("   u2 = "); Serial.println(state.u2);
+
+    delay(500);  // полсекунды между выводами, чтобы было видно изменения
+}
