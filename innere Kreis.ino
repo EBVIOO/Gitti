@@ -192,4 +192,95 @@ void loop() {
     Serial.print("   u2 = "); Serial.println(state.u2);
 
     delay(500);  // полсекунды между выводами, чтобы было видно изменения
+} 
+int beispielVariable4 = 4;
+
+void setupAndrii()
+{
+  
+}
+
+void AndriiSpeedRegelung()
+{
+  // CODE
+  uS1 = 255;
+  uS2 = 255;
+  dM1 = true;  
+  dM2 = false;  
+} 
+letzte 
+
+
+const int pwmPin1 = 1;
+const int dirPin1 = 1;
+const int pwmPin2 = 1;
+const int dirPin2 = 1;
+
+typedef struct {
+    float u1;
+    float u2;
+} ReglerState;
+
+ReglerState state = {0, 0};
+
+float sS1, sI1, sS2, sI2;  // Soll и Ist
+int uS1, uS2;
+bool dM1, dM2;
+
+
+void setup() {
+    Serial.begin(9600);
+
+    pinMode(pwmPin1, OUTPUT);
+    pinMode(dirPin1, OUTPUT);
+    pinMode(pwmPin2, OUTPUT);
+    pinMode(dirPin2, OUTPUT);
+
+    
+    sS1 = 100; sI1 = 0;
+    sS2 = 120; sI2 = 0;
+    uS1 = uS2 = 0;
+    dM1 = dM2 = true;
+}
+
+
+
+{
+    float Kp = 0.5;
+
+    state->u1 += Kp * (sS1 - sI1);
+    state->u2 += Kp * (sS2 - sI2);
+
+    if (state->u1 > 255) state->u1 = 255;
+    if (state->u1 < -255) state->u1 = -255;
+
+    if (state->u2 > 255) state->u2 = 255;
+    if (state->u2 < -255) state->u2 = -255;
+}
+
+
+void loop() {
+    InnereRegelung(sS1, sI1, sS2, sI2, &state);
+
+    
+    uS1 = (int)abs(state.u1);
+    uS2 = (int)abs(state.u2);
+
+    dM1 = (state.u1 >= 0);
+    dM2 = (state.u2 >= 0);
+
+    
+    analogWrite(pwmPin1, uS1);
+    digitalWrite(dirPin1, dM1);
+    analogWrite(pwmPin2, uS2);
+    digitalWrite(dirPin2, dM2);
+
+    Serial.print("u1="); Serial.print(state.u1);
+    Serial.print(" PWM1="); Serial.print(uS1);
+    Serial.print(" dir1="); Serial.print(dM1);
+    Serial.print(" | u2="); Serial.print(state.u2);
+    Serial.print(" PWM2="); Serial.print(uS2);
+    Serial.print(" dir2="); Serial.println(dM2);
+
+    delay(500);
 }
